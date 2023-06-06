@@ -5,7 +5,7 @@
 
 #include "employee.h"
 #include "utility.h"
-#include "editinfo.h"
+#include "editemployee.h"
 
 using std::string;
 using std::cout;

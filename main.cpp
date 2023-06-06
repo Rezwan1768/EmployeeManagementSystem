@@ -1,12 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 #include <vector>
 
 #include "employee.h"
 #include "utility.h"
-#include "editinfo.h"
+#include "editemployee.h"
 
 using std::string;
 using std::cout;
@@ -25,6 +24,7 @@ int main()
 		cout << "3: Search Employee\n";
 		cout << "4: Edit Employee Information\n";
 		cout << "5: Remove Employee\n";
+		cout << "6: Clear Screen\n";
 		cout << "0: Exit\n\n";
 		
 		cout << "Enter option: ";  
@@ -49,6 +49,9 @@ int main()
 			break;
 		case 5:
 			removeEmployee(filePath);
+			break;
+		case 6:
+			std::system("CLS");
 			break;
 		default:
 			cout << "Inavalid option\n";

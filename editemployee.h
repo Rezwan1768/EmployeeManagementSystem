@@ -1,5 +1,5 @@
-#ifndef EDITINFO_H
-#define EDITINFO_H
+#ifndef EDIEMPLOYEE_H
+#define EDIEMPLOYEE_H
 
 void editEmployeeInfo(string filePath);
 void removeEmployee(const string& filePath);

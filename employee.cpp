@@ -15,7 +15,12 @@ using std::ifstream;
 Employee enterEmployeeInfo() 
 {
 	string id, fname, lname, phone, email;
-	cout << "ID: ";					cin >> id;
+    do
+    {
+        cout << "4 digit ID: ";					
+        cin >> id;
+    } while(id.length() != 4);
+	
 	cout << "First Name: ";			cin >> fname;
 	cout << "Last Name: ";			cin >> lname;
 	cout << "Phone: ";			    cin >> phone;
@@ -32,6 +37,7 @@ void registerEmployee(string filePath)
 		Employee e1{};
 		cout << "Employees Information\n";
 		e1 = enterEmployeeInfo();
+        //Enter the info into the file
 		myFile << e1.getID() << ',' << e1.getFName() << ',' << e1.getLName() << "," << e1.getPhone() << ',' << e1.getEmail() << '\n';
 		cout << "Any more employees to register(y/n)?\n";
 		char choice{};
@@ -51,7 +57,7 @@ void displayEmployees(string filePath)
         std::cout << "No employees registerd.\n";
         return;
     }
-	while (std::getline(myFile, line, '\n'))
+	while (std::getline(myFile, line, ','))
 	{
 		cout << std::left;
 		cout << std::setw(20) << line << '\t';

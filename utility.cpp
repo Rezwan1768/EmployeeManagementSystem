@@ -31,7 +31,7 @@ string getFile()
 			if (choice == 'y' || choice == 'Y')
 			{
 				std::ofstream myFile(filePath);  //Create a new file
-				myFile << "ID,First Name,Last Name,Phone,Email\n";
+				myFile << "ID,First Name,Last Name,Phone,Email\n";  //Imclude these column heading
 				cout << filePath << " created.\n";
 			}
 			else
@@ -46,13 +46,17 @@ string getFile()
 		}
 		else
 		{
+			readFile.seekg(0, std::ios::end); // Move the file pointer to the end
+			if (readFile.tellg() == 0) // If the position is 0, then file is empty
+			{
+    			std::ofstream myFile(filePath);
+				myFile << "ID,First Name,Last Name,Phone,Email\n";  //Imclude these column heading
+			}
 			readFile.close();
 			return filePath;
 		}
 	}
 }
-
-
 
 //Function that colllects the data from the csv file and stores it in a avector
 std::vector<Employee> storeDataInVector(string filePath)
@@ -64,11 +68,11 @@ std::vector<Employee> storeDataInVector(string filePath)
 
 	while (std::getline(myFile, line, '\n')) //Extract whole line 
 	{
-		std::stringstream sstream(line);
+		std::stringstream sstream(line); //Store it in a sstream object
 		string word;
-		std::stringstream words;
+		std::stringstream words;  
 
-		while (std::getline(sstream, word, ','))  //Extract each csv from line
+		while (std::getline(sstream, word, ','))  //Extract each csv from line, without the comma
 		{
 			words << word << ' ';
 		}
@@ -86,7 +90,7 @@ std::vector<Employee> storeDataInVector(string filePath)
 void storeVectorInFile(const std::vector<Employee>& employeeList, string filePath)
 {
 	ofstream myFile(filePath);
-	myFile << "ID,First Name,Last Name,Phone,Email\n";
+	myFile << "ID,First Name,Last Name,Phone,Email\n"; //Imclude these column heading first
 	for (const Employee& e : employeeList)
 	{
 		myFile << e.getID() << ',' << e.getFName() << ',' << e.getLName() << ',' << e.getPhone() << ',' << e.getEmail() << '\n';
