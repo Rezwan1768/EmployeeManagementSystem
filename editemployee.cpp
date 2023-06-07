@@ -13,7 +13,7 @@ using std::cin;
 using std::ofstream;
 using std::ifstream;
 
-void editEmployeeInfo(string filePath)
+void editEmployeeInfo(const string& filePath)
 {
 	string id{};
 	cout << "Enter employees 4 digit id: ";
@@ -32,9 +32,13 @@ void editEmployeeInfo(string filePath)
 				cout << "3: Change last name\n";
 				cout << "4: Chnage Phone number\n";
 				cout << "5: Change Email\n";
-				cout << "0: Save and Exit\n";
+				cout << "6. Clear Screen\n";
+				cout << "0: Save and Exit\n\n";
+
+				cout << "Option: ";
 				string input{};
 				cin >> choice;
+				cout << '\n';
 				switch (choice)
 				{
 				case 1: 
@@ -62,15 +66,18 @@ void editEmployeeInfo(string filePath)
 					cin >> input;
 					e.setEmail(input);
 					break;
+				case 6:
+					system("CLS"); //Clear screen
+					break;
 				case 0:
-					storeVectorInFile(employeeList, filePath);
-					cout << "Employee information updated.\n";
+					storeVectorInFile(employeeList, filePath);  //Clear old file data and fill it up with the new data
+					cout << "Employee information updated.\n\n";
 					return;
 				}
 			} 
 		}
 	}
-	cout << "No employee exist with this ID.\n";
+	cout << "No employee exist with this ID.\n\n";
 }
 
 void removeEmployee(const string& filePath)  
@@ -95,6 +102,6 @@ void removeEmployee(const string& filePath)
 		cout << "No employee exist with this ID.\n\n";
 		return;
 	}
-	storeVectorInFile(employeeList, filePath);
+	storeVectorInFile(employeeList, filePath);  //Clear the file and store data with the employee excluded
 	cout << "Employee with id: " << id << " removed from system.\n\n";
 }

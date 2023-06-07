@@ -21,6 +21,7 @@ string getFile()
 	{
 		cout << "Enter file path: ";
 		cin >> filePath;
+		cout << '\n';
 		readFile.open(filePath);
 		if (!readFile)  //If file doesn't exist
 		{
@@ -59,7 +60,7 @@ string getFile()
 }
 
 //Function that colllects the data from the csv file and stores it in a avector
-std::vector<Employee> storeDataInVector(string filePath)
+std::vector<Employee> storeDataInVector(const string& filePath)
 {
 	std::vector<Employee> employeeData{};
 	std::ifstream myFile(filePath);
@@ -87,7 +88,7 @@ std::vector<Employee> storeDataInVector(string filePath)
 	return employeeData;
 }
 
-void storeVectorInFile(const std::vector<Employee>& employeeList, string filePath)
+void storeVectorInFile(const std::vector<Employee>& employeeList, const string& filePath)
 {
 	ofstream myFile(filePath);
 	myFile << "ID,First Name,Last Name,Phone,Email\n"; //Imclude these column heading first

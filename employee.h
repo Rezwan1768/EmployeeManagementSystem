@@ -31,8 +31,9 @@ public:
 	void setEmail(string email) { m_email = email; }
 };
 
-Employee enterEmployeeInfo();
-void registerEmployee(string filePath);
-void displayEmployees(string filePath);
-void searchEmployee(string filePath);
+Employee enterEmployeeInfo(const string& filePath);
+void registerEmployee(const string& filePath);
+void displayEmployees(const string& filePath);
+void searchEmployee(const string& filePath);
+std::vector<string> getIds(const string& filePath);
 #endif
